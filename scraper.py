@@ -95,13 +95,12 @@ soup = BeautifulSoup(html, 'lxml')
 
 
 #### SCRAPE DATA
-print soup
+
 blocks = soup.find('a', id='Trust').find_all_next('a')
 for block in blocks:
     if '20' in block.text and '.csv' in block['href'] or '.xls' in block['href'] or '.xlsx' in block['href']:
         link = 'http://www.lewishamandgreenwich.nhs.uk'+block['href']
         title = block.text.strip()
-        print title
         csvMth = title[:3]
         csvYr = title[-4:]
         csvMth = convert_mth_strings(csvMth.upper())
